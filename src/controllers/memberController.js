@@ -1,4 +1,5 @@
 const GymModel = require("../models/gymModel")
+const PersonalDetailsModel = require("../models/personalDetailsModel")
 const ReviewModel = require("../models/reviewModel")
 const { getValidationErrorMessage } = require("../utils/validationUtils")
 
@@ -50,4 +51,27 @@ const reviewController = async (req, res) => {
     }
 }
 
-module.exports = {joinGymController, reviewController}
+
+const personalDetailsController = async(req, res) => {
+    try{
+        const data = req.body
+        console.log(data)
+        const personalDetails = await PersonalDetailsModel.create(data)
+        const user = req.user
+        user.personal_details = personalDetails._id
+        res.json({message: "Personal details created successfully", personalDetails})
+    }catch(err){
+        if (err.name === "ValidationError"){
+            const message = getValidationErrorMessage(err)
+            res.status(400).json({message: message})
+        }
+        else if (err.name === "CastError"){
+            res.status(500).json({message: err.message})
+        }
+        else{
+            res.status(500).json({message: "Something went wrong in the server. Please try after some time."})
+        }
+    }
+}
+
+module.exports = {joinGymController, reviewController, personalDetailsController}

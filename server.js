@@ -2,8 +2,16 @@ const express = require("express")
 const app = express()
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+var cors = require('cors')
+
 
 require('dotenv').config()
+var corsOptions = {
+  origin: process.env.CLIENT_URL,
+  optionsSuccessStatus: 200,
+  credentials: true
+}
+app.use(cors(corsOptions))
 
 const userRouter = require("./src/routes/userRouter")
 const adminGymRouter = require("./src/routes/adminGymRouter")

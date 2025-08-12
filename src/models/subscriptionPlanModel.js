@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const subscriptionPlanSchema = new mongoose.Schema({
     plan_title: {
         type: String,
-        required: [true, "GPlan title is required"],
+        required: [true, "Plan title is required"],
         trim: true,
     },
     plan_description: {

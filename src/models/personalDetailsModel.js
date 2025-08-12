@@ -43,3 +43,5 @@ const personalDetailsSchema = new mongoose.Schema({
 
 
 const PersonalDetailsModel = mongoose.model("personalDetails", personalDetailsSchema)
+
+module.exports = PersonalDetailsModel

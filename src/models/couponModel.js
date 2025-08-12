@@ -23,3 +23,5 @@ const couponSchema = new mongoose.Schema({
 })
 
 const CouponModel = mongoose.model("coupon", couponSchema)
+
+module.exports = CouponModel

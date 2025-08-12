@@ -55,7 +55,7 @@ const loginController = async (req, res) => {
             bcrypt.compare(password, user.password, function(err, result) {
                 if (result){
                     var token = jwt.sign({email}, JWT_SECRET)
-                    res.cookie('token', token, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "Lax", secure: true }).json({"message": "Login successfull"})
+                    res.cookie('token', token, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "None", secure: true }).json({"message": "Login successfull"})
                 }else{
                     res.status(401).json({"message": "Invalid credentials."})
                 }

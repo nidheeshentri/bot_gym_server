@@ -37,6 +37,10 @@ const gymSchema = new mongoose.Schema({
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "review",
+    }],
+    coupons: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "coupon",
     }]
 }, {
     timestamps: true
